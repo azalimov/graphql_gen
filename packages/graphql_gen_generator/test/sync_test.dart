@@ -98,9 +98,11 @@ void main() {
   test('input model with enum converters and defaults', () {
     run();
     final filter = read('lib/api/inputs/book_filter/book_filter.dart');
-    // The barrel import already brings the converters in.
     expect(filter, contains("import 'package:library_app/api/api.dart';"));
-    expect(filter, isNot(contains('api_enum_converters.dart')));
+    expect(
+      filter,
+      contains("import 'package:library_app/api/api_enum_converters.dart';"),
+    );
     expect(filter, isNot(contains('GenerateEnumFields')));
     expect(
       filter,
@@ -186,6 +188,19 @@ void main() {
     );
   });
 
+  test('argument builders import models only when arguments need them', () {
+    run(
+      schema: '''
+type Query { book(id: ID!): Book }
+type Book { id: ID }
+''',
+    );
+    expect(
+      read('lib/api/api_query_arguments.dart'),
+      isNot(contains('api/api.dart')),
+    );
+  });
+
   test('barrel exports every generated file', () {
     run();
     final barrel = read('lib/api/api.dart');
@@ -193,6 +208,8 @@ void main() {
     expect(barrel, contains("export 'models/book/book.dart';"));
     expect(barrel, contains("export 'api_query_arguments.dart';"));
     expect(barrel, isNot(contains("export 'api.dart';")));
+    // Only models use the converters, and they import them directly.
+    expect(barrel, isNot(contains('api_enum_converters.dart')));
   });
 
   test(

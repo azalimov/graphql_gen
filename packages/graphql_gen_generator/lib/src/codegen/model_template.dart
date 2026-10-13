@@ -96,7 +96,7 @@ class ModelTemplate {
     final b = StringBuffer()
       ..writeln("import 'package:freezed_annotation/freezed_annotation.dart';");
     if (needsModelsImport) b.writeln("import '${config.modelsImport}';");
-    if (usesConverters && !(needsModelsImport && config.modelsImportIsBarrel)) {
+    if (usesConverters) {
       b.writeln("import '$convertersImport';");
     }
     if (!isInput) b.writeln("import '${config.runtimeImport}';");

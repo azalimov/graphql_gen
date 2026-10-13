@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:graphql_gen_example/api/api.dart';
+import 'package:graphql_gen_example/api/api_enum_converters.dart';
 
 part 'book_filter.freezed.dart';
 part 'book_filter.g.dart';

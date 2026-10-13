@@ -121,10 +121,6 @@ class GraphQLGenConfig {
     return packageImport(p.join(output, barrel!));
   }
 
-  /// Whether generated files import the generated barrel, which already
-  /// exports the enum converters.
-  bool get modelsImportIsBarrel => _modelsImport == null && barrel != null;
-
   String className(GeneratedFile file) =>
       classNames[file] ?? '$classPrefix${file.suffix}';
 

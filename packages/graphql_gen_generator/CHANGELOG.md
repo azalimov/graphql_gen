@@ -1,3 +1,14 @@
+## 0.1.2
+
+- Field enums without nested fields no longer declare an unused
+  `nestedFields` constructor parameter (`unused_element_parameter`).
+- The barrel no longer exports the enum converters; models import them
+  directly, so a barrel re-exported from `models_import` causes no
+  `unnecessary_import`.
+- Argument builders import the models only when an argument needs them.
+
+Run `sync --regenerate` and `build_runner build` to pick up the changes.
+
 ## 0.1.1
 
 - Generated field enums no longer trigger `prefer_initializing_formals`.

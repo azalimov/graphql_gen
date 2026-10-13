@@ -10,11 +10,11 @@ part of 'node.dart';
 enum _NodeFields implements EnumFields {
   id(NodeJsonKeys.id);
 
-  const _NodeFields(this.fieldName, {this.nestedFields});
+  const _NodeFields(this.fieldName);
 
   @override
   final String fieldName;
 
   @override
-  final List<EnumFields>? nestedFields;
+  List<EnumFields>? get nestedFields => null;
 }

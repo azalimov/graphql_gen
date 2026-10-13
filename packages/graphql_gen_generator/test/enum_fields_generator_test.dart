@@ -69,8 +69,14 @@ class _BookDto implements BookDto {
       ),
     );
     expect(output, contains('  values_(BookDtoJsonKeys.values)'));
-    expect(output, contains('  final String fieldName;'));
+    expect(
+      output,
+      contains('  const _BookDtoFields(this.fieldName, {this.nestedFields});'),
+    );
     expect(output, contains('  final List<EnumFields>? nestedFields;'));
+    // No entry of AuthorDto has nested fields, so no unused parameter.
+    expect(output, contains('  const _AuthorDtoFields(this.fieldName);'));
+    expect(output, contains('  List<EnumFields>? get nestedFields => null;'));
   });
 
   test('a class without fields is an error', () async {

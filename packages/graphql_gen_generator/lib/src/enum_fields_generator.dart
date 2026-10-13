@@ -48,18 +48,31 @@ class EnumFieldsGenerator extends GeneratorForAnnotation<GenerateEnumFields> {
       );
     }
 
-    return '''
-enum $enumName implements EnumFields {
-${entries.join(',\n')}
-;
-
+    // A parameter no entry passes is an unused_element_parameter warning.
+    final nested = entries.any((e) => e.contains('nestedFields:'));
+    final members = nested
+        ? '''
   const $enumName(this.fieldName, {this.nestedFields});
 
   @override
   final String fieldName;
 
   @override
-  final List<EnumFields>? nestedFields;
+  final List<EnumFields>? nestedFields;'''
+        : '''
+  const $enumName(this.fieldName);
+
+  @override
+  final String fieldName;
+
+  @override
+  List<EnumFields>? get nestedFields => null;''';
+
+    return '''
+enum $enumName implements EnumFields {
+${entries.join(',\n')}
+;
+$members
 }
 ''';
   }
