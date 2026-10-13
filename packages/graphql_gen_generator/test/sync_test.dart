@@ -271,7 +271,7 @@ void main() {
   test('only SCREAMING_CASE enums ignore constant_identifier_names', () {
     run(
       schema:
-          '${sdl}\nenum SortOrder { asc desc }\n'
+          '$sdl\nenum SortOrder { asc desc }\n'
           'type Sorted { order: SortOrder }\n',
     );
     expect(
