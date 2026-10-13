@@ -1,0 +1,7 @@
+builders:
+  enum_fields:
+    import: "package:graphql_gen_generator/builder.dart"
+    builder_factories: ["enumFieldsBuilder"]
+    build_extensions: {".dart": [".fields.g.dart"]}
+    auto_apply: dependents
+    build_to: source

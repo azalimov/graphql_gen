@@ -1,0 +1,87 @@
+"""
+A small library schema exercising the parts of SDL the generator handles.
+"""
+schema {
+  query: RootQuery
+  mutation: RootMutation
+}
+
+scalar DateTime
+scalar JSON
+
+enum Genre {
+  "Made-up stories."
+  FICTION
+  NON_FICTION @deprecated(reason: "Use FACT")
+}
+
+extend enum Genre {
+  FACT
+}
+
+interface Node {
+  id: ID!
+}
+
+type Author implements Node {
+  id: ID!
+  name: String
+  born: DateTime
+}
+
+type Book implements Node {
+  id: ID!
+  title: String!
+  "Who wrote it"
+  author: Author
+  coAuthors: [Author!]
+  genres: [Genre!]!
+  tags: [String]
+  ratings(last: Int = 10): [Int!]
+  matrix: [[Int!]!]
+  metadata: JSON
+  default: String
+  legacyCode: String @deprecated(reason: "Use 'code' instead")
+  result: SearchResult
+}
+
+extend type Book {
+  pages: Int
+}
+
+union SearchResult = Book | Author
+
+input BookFilter {
+  genre: Genre
+  genres: [Genre!]
+  requiredGenres: [Genre!]!
+  title: String
+  limit: Int! = 20
+  new: Boolean
+}
+
+input CreateBookInput {
+  title: String!
+  genre: Genre!
+  authorIds: [ID!]!
+  filter: BookFilter
+}
+
+type RootQuery {
+  """
+  Books matching the filter.
+  """
+  books(
+    filter: BookFilter
+    filters: [BookFilter!]
+    first: Int! = 10
+    after: String
+  ): [Book!]!
+  book(id: ID!): Book
+  search(text: String!): [SearchResult!]!
+  me: Author
+}
+
+type RootMutation {
+  createBook(input: CreateBookInput!): Book!
+}

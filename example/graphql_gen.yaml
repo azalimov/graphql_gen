@@ -1,0 +1,10 @@
+schema:
+  file: schema.graphql
+
+output: lib/api
+barrel: api.dart
+class_prefix: Api
+
+scalars:
+  DateTime: DateTime
+  JSON: Map<String, dynamic>

@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+      - run: dart pub get
+      - run: dart format --output=none --set-exit-if-changed packages example/test
+      - run: dart analyze --fatal-infos
+      - run: dart test
+        working-directory: packages/graphql_gen
+      - run: dart test
+        working-directory: packages/graphql_gen_generator
+      - name: Example is up to date and works
+        working-directory: example
+        run: |
+          dart run graphql_gen_generator sync --regenerate
+          dart run build_runner build
+          git diff --exit-code
+          dart test

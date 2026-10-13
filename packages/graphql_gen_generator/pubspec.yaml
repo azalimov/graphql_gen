@@ -1,0 +1,28 @@
+name: graphql_gen_generator
+description: >-
+  build_runner generator for graphql_gen: generates GraphQL field enums for
+  classes annotated with @GenerateEnumFields.
+version: 0.1.0
+repository: https://github.com/azalimov/graphql_gen/tree/main/packages/graphql_gen_generator
+issue_tracker: https://github.com/azalimov/graphql_gen/issues
+topics: [graphql, codegen, build-runner, freezed]
+
+environment:
+  sdk: ^3.9.0
+
+resolution: workspace
+
+dependencies:
+  analyzer: '>=10.0.1 <15.0.0'
+  args: ^2.7.0
+  build: ^4.0.3
+  gql: ^1.0.1
+  graphql_gen: ^0.1.0
+  http: ^1.6.0
+  path: ^1.9.1
+  source_gen: ^4.0.0
+  yaml: ^3.1.4
+
+dev_dependencies:
+  build_test: ^3.0.0
+  test: ^1.25.0
