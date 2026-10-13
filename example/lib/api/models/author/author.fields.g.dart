@@ -12,14 +12,11 @@ enum _AuthorFields implements EnumFields {
   name(AuthorJsonKeys.name),
   born(AuthorJsonKeys.born);
 
-  final String _fieldName;
-  final List<EnumFields>? _nestedFields;
-  const _AuthorFields(this._fieldName, {List<EnumFields>? nestedFields})
-    : _nestedFields = nestedFields;
+  const _AuthorFields(this.fieldName, {this.nestedFields});
 
   @override
-  String get fieldName => _fieldName;
+  final String fieldName;
 
   @override
-  List<EnumFields>? get nestedFields => _nestedFields;
+  final List<EnumFields>? nestedFields;
 }

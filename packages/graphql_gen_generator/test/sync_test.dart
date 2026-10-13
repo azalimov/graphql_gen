@@ -268,6 +268,24 @@ void main() {
     expect(read('lib/api/enums/genre.dart'), contains('POETRY'));
   });
 
+  test('only SCREAMING_CASE enums ignore constant_identifier_names', () {
+    run(
+      schema:
+          '${sdl}\nenum SortOrder { asc desc }\n'
+          'type Sorted { order: SortOrder }\n',
+    );
+    expect(
+      read('lib/api/enums/genre.dart'),
+      startsWith(
+        '// ignore_for_file: constant_identifier_names\n\nenum Genre {',
+      ),
+    );
+    expect(
+      read('lib/api/enums/sort_order.dart'),
+      startsWith('enum SortOrder {'),
+    );
+  });
+
   test('unmapped custom scalars become Object with a warning', () {
     final result = run(
       cfg: config(

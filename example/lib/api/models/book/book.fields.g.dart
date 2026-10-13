@@ -22,14 +22,11 @@ enum _BookFields implements EnumFields {
   result(BookJsonKeys.result),
   pages(BookJsonKeys.pages);
 
-  final String _fieldName;
-  final List<EnumFields>? _nestedFields;
-  const _BookFields(this._fieldName, {List<EnumFields>? nestedFields})
-    : _nestedFields = nestedFields;
+  const _BookFields(this.fieldName, {this.nestedFields});
 
   @override
-  String get fieldName => _fieldName;
+  final String fieldName;
 
   @override
-  List<EnumFields>? get nestedFields => _nestedFields;
+  final List<EnumFields>? nestedFields;
 }

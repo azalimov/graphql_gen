@@ -2,7 +2,7 @@ name: graphql_gen
 description: >-
   Type-safe GraphQL query building for Dart with generated field enums.
   Build selections in Dart instead of writing .graphql documents.
-version: 0.1.0
+version: 0.1.1
 repository: https://github.com/azalimov/graphql_gen/tree/main/packages/graphql_gen
 issue_tracker: https://github.com/azalimov/graphql_gen/issues
 topics: [graphql, codegen, freezed, query-builder]

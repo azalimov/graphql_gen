@@ -1,3 +1,11 @@
+## 0.1.1
+
+- Generated field enums no longer trigger `prefer_initializing_formals`.
+- Enum files with non-lowerCamelCase values ignore `constant_identifier_names`.
+- README: exclude generated files from analysis.
+
+Run `sync --regenerate` and `build_runner build` to pick up the changes.
+
 ## 0.1.0
 
 - Initial release.

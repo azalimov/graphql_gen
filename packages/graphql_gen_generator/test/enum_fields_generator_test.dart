@@ -69,6 +69,8 @@ class _BookDto implements BookDto {
       ),
     );
     expect(output, contains('  values_(BookDtoJsonKeys.values)'));
+    expect(output, contains('  final String fieldName;'));
+    expect(output, contains('  final List<EnumFields>? nestedFields;'));
   });
 
   test('a class without fields is an error', () async {

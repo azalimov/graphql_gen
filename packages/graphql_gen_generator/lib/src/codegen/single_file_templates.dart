@@ -5,6 +5,8 @@ import '../naming.dart';
 import '../schema/schema.dart';
 import 'type_mapper.dart';
 
+final _lowerCamelCase = RegExp(r'^[a-z][a-zA-Z0-9]*$');
+
 /// Renders the one-per-schema files: enums, converters, operation names,
 /// argument builders and the barrel.
 class SingleFileTemplates {
@@ -16,8 +18,13 @@ class SingleFileTemplates {
 
   String get _schemaFileName => p.basename(config.schema.file);
 
-  String enumFile(GqlEnumType type) =>
-      'enum ${type.name} {\n  ${type.values.join(',\n  ')},\n}\n';
+  String enumFile(GqlEnumType type) {
+    // GraphQL enum values are usually SCREAMING_CASE.
+    final ignore = type.values.any((v) => !_lowerCamelCase.hasMatch(v))
+        ? '// ignore_for_file: constant_identifier_names\n\n'
+        : '';
+    return '${ignore}enum ${type.name} {\n  ${type.values.join(',\n  ')},\n}\n';
+  }
 
   /// Converters that keep enum values as Dart enums in `toJson`, so
   /// `GraphQLArgumentBuilder` writes them unquoted.

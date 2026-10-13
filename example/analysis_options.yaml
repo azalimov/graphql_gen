@@ -1,6 +1,1 @@
 include: ../analysis_options.yaml
-
-analyzer:
-  errors:
-    # GraphQL enum values are usually SCREAMING_CASE.
-    constant_identifier_names: ignore

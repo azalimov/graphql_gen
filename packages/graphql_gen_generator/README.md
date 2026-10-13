@@ -79,9 +79,18 @@ Type rules:
 - Unions become `Map<String, dynamic>`. Custom scalars without a mapping become
   `Object` with a warning.
 
-GraphQL enum values keep their schema spelling, so add
-`constant_identifier_names: ignore` to `analysis_options.yaml` if you lint
-generated code.
+GraphQL enum values keep their schema spelling; enum files that need it get
+`// ignore_for_file: constant_identifier_names`.
+
+json_serializable's `JsonKeys` classes of input types are never read, which
+shows up as `unused_field` warnings. Exclude generated files from analysis:
+
+```yaml
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+```
 
 ## Configuration
 
