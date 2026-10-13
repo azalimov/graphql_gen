@@ -1,3 +1,8 @@
+## 0.1.3
+
+- Network and file errors print a one-line `error:` message instead of a
+  stack trace.
+
 ## 0.1.2
 
 - Field enums without nested fields no longer declare an unused
