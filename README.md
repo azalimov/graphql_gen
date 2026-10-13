@@ -9,6 +9,8 @@ type, generated field enums, and a type-safe runtime query builder.
 | [graphql_gen_generator](packages/graphql_gen_generator) | Schema sync CLI and `build_runner` field-enum generator |
 | [example](example) | End-to-end project generated from `example/schema.graphql` |
 
+Ideas for later versions: [docs/roadmap.md](docs/roadmap.md).
+
 ## Development
 
 ```bash
