@@ -15,7 +15,7 @@ resolution: workspace
 dependencies:
   analyzer: '>=10.0.1 <15.0.0'
   args: ^2.7.0
-  build: ^4.0.3
+  build: '>=4.0.3 <6.0.0'
   gql: ^1.0.1
   graphql_gen: ^0.1.0
   http: ^1.6.0

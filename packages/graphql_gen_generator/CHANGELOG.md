@@ -2,6 +2,7 @@
 
 - Network and file errors print a one-line `error:` message instead of a
   stack trace.
+- Supports `build` 5.x (constraint widened to `>=4.0.3 <6.0.0`).
 
 ## 0.1.2
 
